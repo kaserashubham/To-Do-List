@@ -6,9 +6,9 @@ document
 const createNewRow = (task) => {
   let newRow = document.createElement("tr");
   let newData;
-//   newData = document.createElement("td");
-//   newData.innerText = ++taskCount;
-//   newRow.append(newData);
+  //   newData = document.createElement("td");
+  //   newData.innerText = ++taskCount;
+  //   newRow.append(newData);
   newData = document.createElement("td");
   newData.innerText = task;
   newRow.append(newData);
@@ -28,7 +28,13 @@ document.querySelector("#add-task").addEventListener("click", (event) => {
 
   document.querySelector("#task-input").value = null;
 });
+const addDummyLog = (noOfTasks) => {
+  for (let i = 0; i < noOfTasks; i++) {
+    createNewRow(`Task number ${i + 1}`);
+  }
+};
 
+addDummyLog(5);
 // if (taskCount > 0) {
 //   let allDeleteRow = document.querySelectorAll("#delete-row");
 //   console.log(allDeleteRow);
@@ -36,3 +42,13 @@ document.querySelector("#add-task").addEventListener("click", (event) => {
 //     console.log("delete button pressed", e);
 //   });
 // }
+let tableBody = document.querySelector("tbody");
+tableBody.addEventListener("click", (e) => {
+  console.log(e.target.innerText == "Delete");
+  console.log(e.target);
+  if (e.target.innerText == "Delete") {
+    // confirm("Do you want to delete task?");
+    console.log(e.target.parentElement.parentElement);
+    e.target.parentElement.parentElement.remove();
+  }
+});
